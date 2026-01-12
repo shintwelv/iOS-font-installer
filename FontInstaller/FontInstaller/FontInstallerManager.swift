@@ -98,6 +98,10 @@ class FontInstallerManager {
             payloadContent.append(fontPayload)
         }
         
+        let appName = Bundle.main.object(forInfoDictionaryKey: "CFBundleDisplayName") as? String
+            ?? Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as? String
+            ?? "Font Installer"
+        
         let profile: [String: Any] = [
             "PayloadType": "Configuration",
             "PayloadVersion": 1,
@@ -105,7 +109,7 @@ class FontInstallerManager {
             "PayloadUUID": UUID().uuidString,
             "PayloadDisplayName": "Custom Font Installation",
             "PayloadDescription": fontNames.sorted().joined(separator: "\n"),
-            "PayloadOrganization": "Font Installer App",
+            "PayloadOrganization": appName,
             "PayloadContent": payloadContent
         ]
         
