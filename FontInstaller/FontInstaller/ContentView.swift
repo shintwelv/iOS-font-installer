@@ -39,7 +39,7 @@ struct ContentView: View {
                 
                 Button(action: {
                     errorMessage = nil
-                    showInstallGuide = true
+                    showFileImporter = true
                 }) {
                     HStack {
                         Image(systemName: "square.and.arrow.down")
@@ -66,12 +66,7 @@ struct ContentView: View {
                 }
             }
             .sheet(isPresented: $showInstallGuide) {
-                ProfileInstallGuideView(onContinue: {
-                    // Trigger file picker after a slight delay to ensure the sheet is dismissed
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                        showFileImporter = true
-                    }
-                })
+                ProfileInstallGuideView()
             }
             .fileImporter(
                 isPresented: $showFileImporter,

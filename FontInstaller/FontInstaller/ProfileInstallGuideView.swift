@@ -9,7 +9,6 @@ import SwiftUI
 
 struct ProfileInstallGuideView: View {
     @Environment(\.dismiss) var dismiss
-    var onContinue: (() -> Void)?
     
     var body: some View {
         NavigationView {
@@ -24,7 +23,7 @@ struct ProfileInstallGuideView: View {
                         stepNumber: 1,
                         title: "guide_step1_title",
                         description: "guide_step1_desc",
-                        iconName: "square.and.arrow.down"
+                        iconName: "square.and.arrow.up"
                     )
                     
                     StepView(
@@ -45,9 +44,8 @@ struct ProfileInstallGuideView: View {
                     
                     Button(action: {
                         dismiss()
-                        onContinue?()
                     }) {
-                        Text(onContinue != nil ? "button_continue" : "button_close")
+                        Text("button_close")
                             .font(.headline)
                             .frame(maxWidth: .infinity)
                             .padding()
