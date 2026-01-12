@@ -32,11 +32,11 @@ struct ContentView: View {
                 .padding(.horizontal)
             
             if isProcessing {
-                ProgressView(Text("status_installing"))
+                ProgressView("status_installing")
             } else {
                 Text(statusMessage)
                     .font(.headline)
-                    .foregroundStyle(errorMessage == nil ? .primary : .red)
+                    .foregroundStyle(errorMessage == nil ? Color.primary : Color.red)
                     .multilineTextAlignment(.center)
                     .padding()
             }
