@@ -10,7 +10,6 @@ import UniformTypeIdentifiers
 
 struct ContentView: View {
     @State private var showFileImporter = false
-    @State private var statusMessage: String = NSLocalizedString("status_ready", comment: "Ready to install fonts")
     @State private var isProcessing = false
     @State private var errorMessage: String? = nil
     @State private var generatedProfileURL: URL? = nil
@@ -36,12 +35,6 @@ struct ContentView: View {
                 
                 if isProcessing {
                     ProgressView("status_installing")
-                } else {
-                    Text(statusMessage)
-                        .font(.headline)
-                        .foregroundStyle(errorMessage == nil ? Color.primary : Color.red)
-                        .multilineTextAlignment(.center)
-                        .padding()
                 }
                 
                 Button(action: {
@@ -97,19 +90,16 @@ struct ContentView: View {
         switch result {
         case .success(let urls):
             guard !urls.isEmpty else {
-                statusMessage = NSLocalizedString("status_no_files", comment: "No files selected.")
                 return
             }
             installFonts(urls)
         case .failure(let error):
             errorMessage = error.localizedDescription
-            statusMessage = NSLocalizedString("status_error_selecting", comment: "Error selecting files.")
         }
     }
     
     private func installFonts(_ urls: [URL]) {
         isProcessing = true
-        statusMessage = String(format: NSLocalizedString("status_preparing_count", comment: "Preparing to install %lld fonts..."), urls.count)
         
         // Start accessing security scoped resources for each URL
         // We only keep the ones we successfully accessed
@@ -118,7 +108,6 @@ struct ContentView: View {
         guard !accessibleUrls.isEmpty else {
             isProcessing = false
             errorMessage = NSLocalizedString("status_access_error", comment: "Could not access the selected files.")
-            statusMessage = NSLocalizedString("status_permission_error", comment: "Permission error.")
             return
         }
         
@@ -134,11 +123,9 @@ struct ContentView: View {
                 switch result {
                 case .success(let profileUrl):
                     errorMessage = nil
-                    statusMessage = NSLocalizedString("status_ready", comment: "Ready")
                     generatedProfileURL = profileUrl
                 case .failure(let error):
                     errorMessage = error.localizedDescription
-                    statusMessage = NSLocalizedString("status_failed", comment: "Installation failed.")
                 }
             }
         }
