@@ -104,7 +104,7 @@ class FontInstallerManager {
             "PayloadIdentifier": "com.fontinstaller.profile.\(UUID().uuidString)",
             "PayloadUUID": UUID().uuidString,
             "PayloadDisplayName": "Install \(urls.count) \(urls.count > 1 ? "fonts" : "font")",
-            "PayloadDescription": fontNames.joined(separator: "\n"),
+            "PayloadDescription": fontNames.sorted().joined(separator: "\n"),
             "PayloadOrganization": "Font Installer App",
             "PayloadContent": payloadContent
         ]
