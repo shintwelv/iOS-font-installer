@@ -10,7 +10,7 @@ import UniformTypeIdentifiers
 
 struct ContentView: View {
     @State private var showFileImporter = false
-    @State private var statusMessage: String = "Ready to install fonts"
+    @State private var statusMessage: String = NSLocalizedString("status_ready", comment: "Ready to install fonts")
     @State private var isProcessing = false
     @State private var errorMessage: String? = nil
 
@@ -22,21 +22,21 @@ struct ContentView: View {
                 .frame(width: 80, height: 80)
                 .foregroundStyle(.tint)
             
-            Text("Font Installer")
+            Text("app_title")
                 .font(.largeTitle)
                 .fontWeight(.bold)
             
-            Text("Select OTF or TTF files to install them to your system.")
+            Text("app_description")
                 .multilineTextAlignment(.center)
                 .foregroundStyle(.secondary)
                 .padding(.horizontal)
             
             if isProcessing {
-                ProgressView("Installing...")
+                ProgressView(Text("status_installing"))
             } else {
                 Text(statusMessage)
                     .font(.headline)
-                    .foregroundStyle(errorMessage == nil ? .primary : .secondary)
+                    .foregroundStyle(errorMessage == nil ? .primary : .red)
                     .multilineTextAlignment(.center)
                     .padding()
             }
@@ -47,7 +47,7 @@ struct ContentView: View {
             }) {
                 HStack {
                     Image(systemName: "square.and.arrow.down")
-                    Text("Select Font Files")
+                    Text("button_select_files")
                 }
                 .font(.headline)
                 .padding()
@@ -73,19 +73,19 @@ struct ContentView: View {
         switch result {
         case .success(let urls):
             guard !urls.isEmpty else {
-                statusMessage = "No files selected."
+                statusMessage = NSLocalizedString("status_no_files", comment: "No files selected.")
                 return
             }
             installFonts(urls)
         case .failure(let error):
             errorMessage = error.localizedDescription
-            statusMessage = "Error selecting files."
+            statusMessage = NSLocalizedString("status_error_selecting", comment: "Error selecting files.")
         }
     }
     
     private func installFonts(_ urls: [URL]) {
         isProcessing = true
-        statusMessage = "Preparing to install \(urls.count) fonts..."
+        statusMessage = String(format: NSLocalizedString("status_preparing_count", comment: "Preparing to install %lld fonts..."), urls.count)
         
         // Start accessing security scoped resources for each URL
         // We only keep the ones we successfully accessed
@@ -93,8 +93,8 @@ struct ContentView: View {
         
         guard !accessibleUrls.isEmpty else {
             isProcessing = false
-            errorMessage = "Could not access the selected files."
-            statusMessage = "Permission error."
+            errorMessage = NSLocalizedString("status_access_error", comment: "Could not access the selected files.")
+            statusMessage = NSLocalizedString("status_permission_error", comment: "Permission error.")
             return
         }
         
@@ -110,10 +110,10 @@ struct ContentView: View {
                 switch result {
                 case .success:
                     errorMessage = nil
-                    statusMessage = "Successfully installed \(accessibleUrls.count) fonts!"
+                    statusMessage = String(format: NSLocalizedString("status_success_count", comment: "Successfully installed %lld fonts!"), accessibleUrls.count)
                 case .failure(let error):
                     errorMessage = error.localizedDescription
-                    statusMessage = "Installation failed."
+                    statusMessage = NSLocalizedString("status_failed", comment: "Installation failed.")
                 }
             }
         }

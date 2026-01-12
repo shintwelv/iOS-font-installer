@@ -6,8 +6,19 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		2DC676702F149BFD00DB026C /* en.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 2DC6766C2F149BFC00DB026C /* en.lproj */; };
+		2DC676712F149BFD00DB026C /* ja.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 2DC6766D2F149BFC00DB026C /* ja.lproj */; };
+		2DC676722F149BFD00DB026C /* zh-Hans.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 2DC6766E2F149BFD00DB026C /* zh-Hans.lproj */; };
+		2DC676732F149BFD00DB026C /* ko.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 2DC6766F2F149BFD00DB026C /* ko.lproj */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		2DC676552F1497BC00DB026C /* FontInstaller.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FontInstaller.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2DC6766C2F149BFC00DB026C /* en.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = en.lproj; path = FontInstaller/en.lproj; sourceTree = "<group>"; };
+		2DC6766D2F149BFC00DB026C /* ja.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ja.lproj; path = FontInstaller/ja.lproj; sourceTree = "<group>"; };
+		2DC6766E2F149BFD00DB026C /* zh-Hans.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "zh-Hans.lproj"; path = "FontInstaller/zh-Hans.lproj"; sourceTree = "<group>"; };
+		2DC6766F2F149BFD00DB026C /* ko.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ko.lproj; path = FontInstaller/ko.lproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -32,6 +43,10 @@
 		2DC6764C2F1497BC00DB026C = {
 			isa = PBXGroup;
 			children = (
+				2DC6766C2F149BFC00DB026C /* en.lproj */,
+				2DC6766D2F149BFC00DB026C /* ja.lproj */,
+				2DC6766F2F149BFD00DB026C /* ko.lproj */,
+				2DC6766E2F149BFD00DB026C /* zh-Hans.lproj */,
 				2DC676572F1497BC00DB026C /* FontInstaller */,
 				2DC676562F1497BC00DB026C /* Products */,
 			);
@@ -91,6 +106,9 @@
 			knownRegions = (
 				en,
 				Base,
+				ko,
+				ja,
+				"zh-Hans",
 			);
 			mainGroup = 2DC6764C2F1497BC00DB026C;
 			minimizedProjectReferenceProxies = 1;
@@ -109,6 +127,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2DC676702F149BFD00DB026C /* en.lproj in Resources */,
+				2DC676712F149BFD00DB026C /* ja.lproj in Resources */,
+				2DC676722F149BFD00DB026C /* zh-Hans.lproj in Resources */,
+				2DC676732F149BFD00DB026C /* ko.lproj in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,0 +1,12 @@
+"app_title" = "フォントインストーラー";
+"app_description" = "システムにインストールするOTFまたはTTFファイルを選択してください。";
+"button_select_files" = "フォントファイルを選択";
+"status_ready" = "フォントをインストールする準備ができました";
+"status_installing" = "インストール中...";
+"status_no_files" = "ファイルが選択されていません。";
+"status_error_selecting" = "ファイルの選択中にエラーが発生しました。";
+"status_preparing_count" = "%lld個のフォントのインストールを準備中...";
+"status_access_error" = "選択したファイルにアクセスできませんでした。";
+"status_permission_error" = "権限エラー。";
+"status_success_count" = "%lld個のフォントが正常にインストールされました！";
+"status_failed" = "インストールに失敗しました。";

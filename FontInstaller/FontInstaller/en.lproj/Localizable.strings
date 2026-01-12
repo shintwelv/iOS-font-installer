@@ -1,0 +1,12 @@
+"app_title" = "Font Installer";
+"app_description" = "Select OTF or TTF files to install them to your system.";
+"button_select_files" = "Select Font Files";
+"status_ready" = "Ready to install fonts";
+"status_installing" = "Installing...";
+"status_no_files" = "No files selected.";
+"status_error_selecting" = "Error selecting files.";
+"status_preparing_count" = "Preparing to install %lld fonts...";
+"status_access_error" = "Could not access the selected files.";
+"status_permission_error" = "Permission error.";
+"status_success_count" = "Successfully installed %lld fonts!";
+"status_failed" = "Installation failed.";

@@ -1,0 +1,12 @@
+"app_title" = "字体安装器";
+"app_description" = "选择要安装到系统的 OTF 或 TTF 文件。";
+"button_select_files" = "选择字体文件";
+"status_ready" = "准备安装字体";
+"status_installing" = "正在安装...";
+"status_no_files" = "未选择文件。";
+"status_error_selecting" = "选择文件时出错。";
+"status_preparing_count" = "正在准备安装 %lld 个字体...";
+"status_access_error" = "无法访问所选文件。";
+"status_permission_error" = "权限错误。";
+"status_success_count" = "成功安装 %lld 个字体！";
+"status_failed" = "安装失败。";
