@@ -1,6 +1,7 @@
 "app_title" = "Font Installer";
 "app_description" = "Select OTF or TTF files to install them to your system.";
 "button_select_files" = "Select Font Files";
+"button_preview_font" = "Preview Font File";
 "status_ready" = "Ready to install fonts";
 "status_installing" = "Installing...";
 "status_no_files" = "No files selected.";

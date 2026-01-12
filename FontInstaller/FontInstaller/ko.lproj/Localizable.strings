@@ -1,6 +1,7 @@
 "app_title" = "폰트 설치 관리자";
 "app_description" = "시스템에 설치할 OTF 또는 TTF 파일을 선택하세요.";
 "button_select_files" = "폰트 파일 선택";
+"button_preview_font" = "폰트 미리보기";
 "status_ready" = "폰트 설치 준비 완료";
 "status_installing" = "설치 중...";
 "status_no_files" = "선택된 파일 없음.";

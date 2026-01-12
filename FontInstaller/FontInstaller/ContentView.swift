@@ -10,10 +10,12 @@ import UniformTypeIdentifiers
 
 struct ContentView: View {
     @State private var showFileImporter = false
+    @State private var showPreviewFileImporter = false
     @State private var isProcessing = false
     @State private var errorMessage: String? = nil
     @State private var generatedProfileURL: URL? = nil
     @State private var showInstallGuide = false
+    @State private var previewFontUrl: URL? = nil
 
     var body: some View {
         NavigationView {
@@ -54,6 +56,24 @@ struct ContentView: View {
                 }
                 .disabled(isProcessing)
                 .padding(.horizontal, 40)
+                
+                Button(action: {
+                    errorMessage = nil
+                    showPreviewFileImporter = true
+                }) {
+                    HStack {
+                        Image(systemName: "eye")
+                        Text("button_preview_font")
+                    }
+                    .font(.headline)
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    .background(Color.secondary.opacity(0.15))
+                    .foregroundColor(.primary)
+                    .cornerRadius(12)
+                }
+                .disabled(isProcessing)
+                .padding(.horizontal, 40)
             }
             .padding()
             .toolbar {
@@ -75,6 +95,16 @@ struct ContentView: View {
             ) { result in
                 handleFileImport(result)
             }
+            .fileImporter(
+                isPresented: $showPreviewFileImporter,
+                allowedContentTypes: [.font],
+                allowsMultipleSelection: false
+            ) { result in
+                handlePreviewFileImport(result)
+            }
+            .sheet(item: $previewFontUrl) { url in
+                FontPreviewView(fontUrl: url)
+            }
             .sheet(item: $generatedProfileURL) { url in
                 ActivityViewController(activityItems: [url])
             }
@@ -88,6 +118,16 @@ struct ContentView: View {
                 return
             }
             installFonts(urls)
+        case .failure(let error):
+            errorMessage = error.localizedDescription
+        }
+    }
+    
+    private func handlePreviewFileImport(_ result: Result<[URL], Error>) {
+        switch result {
+        case .success(let urls):
+            guard let url = urls.first else { return }
+            previewFontUrl = url
         case .failure(let error):
             errorMessage = error.localizedDescription
         }

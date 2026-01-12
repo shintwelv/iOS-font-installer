@@ -1,6 +1,7 @@
 "app_title" = "字体安装器";
 "app_description" = "选择要安装到系统的 OTF 或 TTF 文件。";
 "button_select_files" = "选择字体文件";
+"button_preview_font" = "预览字体";
 "status_ready" = "准备安装字体";
 "status_installing" = "正在安装...";
 "status_no_files" = "未选择文件。";

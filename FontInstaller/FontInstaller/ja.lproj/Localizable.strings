@@ -1,6 +1,7 @@
 "app_title" = "フォントインストーラー";
 "app_description" = "システムにインストールするOTFまたはTTFファイルを選択してください。";
 "button_select_files" = "フォントファイルを選択";
+"button_preview_font" = "フォントのプレビュー";
 "status_ready" = "フォントをインストールする準備ができました";
 "status_installing" = "インストール中...";
 "status_no_files" = "ファイルが選択されていません。";
