@@ -13,6 +13,7 @@ struct ContentView: View {
     @State private var statusMessage: String = NSLocalizedString("status_ready", comment: "Ready to install fonts")
     @State private var isProcessing = false
     @State private var errorMessage: String? = nil
+    @State private var generatedProfileURL: URL? = nil
 
     var body: some View {
         VStack(spacing: 24) {
@@ -67,6 +68,9 @@ struct ContentView: View {
         ) { result in
             handleFileImport(result)
         }
+        .sheet(item: $generatedProfileURL) { url in
+            ActivityViewController(activityItems: [url])
+        }
     }
     
     private func handleFileImport(_ result: Result<[URL], Error>) {
@@ -108,9 +112,10 @@ struct ContentView: View {
             DispatchQueue.main.async {
                 isProcessing = false
                 switch result {
-                case .success:
+                case .success(let profileUrl):
                     errorMessage = nil
-                    statusMessage = String(format: NSLocalizedString("status_success_count", comment: "Successfully installed %lld fonts!"), accessibleUrls.count)
+                    statusMessage = NSLocalizedString("status_ready", comment: "Ready")
+                    generatedProfileURL = profileUrl
                 case .failure(let error):
                     errorMessage = error.localizedDescription
                     statusMessage = NSLocalizedString("status_failed", comment: "Installation failed.")
@@ -118,6 +123,24 @@ struct ContentView: View {
             }
         }
     }
+}
+
+// Helper for UIActivityViewController
+struct ActivityViewController: UIViewControllerRepresentable {
+    let activityItems: [Any]
+    let applicationActivities: [UIActivity]? = nil
+
+    func makeUIViewController(context: Context) -> UIActivityViewController {
+        let controller = UIActivityViewController(activityItems: activityItems, applicationActivities: applicationActivities)
+        return controller
+    }
+
+    func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {}
+}
+
+// Extension to make URL Identifiable for sheet(item:)
+extension URL: Identifiable {
+    public var id: String { absoluteString }
 }
 
 #Preview {
