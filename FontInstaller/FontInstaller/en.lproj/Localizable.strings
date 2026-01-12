@@ -11,14 +11,26 @@
 "status_success_count" = "Successfully generated profile for %lld fonts!";
 "status_failed" = "Installation failed.";
 
-"guide_title" = "How to Install Fonts";
-"guide_nav_title" = "Installation Guide";
+"guide_nav_title" = "Font Guide";
+"guide_mode_install" = "Installation";
+"guide_mode_uninstall" = "Uninstallation";
+"guide_install_title" = "How to Install Fonts";
+"guide_uninstall_title" = "How to Uninstall Fonts";
+
 "guide_step1_title" = "Save Profile";
 "guide_step1_desc" = "Save the generated configuration profile to 'Files' or share it.";
 "guide_step2_title" = "Open Settings";
 "guide_step2_desc" = "Open the Settings app. You should see 'Profile Downloaded' at the top, or go to General > VPN & Device Management.";
 "guide_step3_title" = "Install Profile";
 "guide_step3_desc" = "Tap the profile and follow the prompts to install. Your fonts will be available system-wide.";
+
+"guide_uninstall_step1_title" = "Open Settings";
+"guide_uninstall_step1_desc" = "Go to Settings > General > VPN & Device Management.";
+"guide_uninstall_step2_title" = "Select Profile";
+"guide_uninstall_step2_desc" = "Find the 'Custom Fonts Installation' profile under Configuration Profiles.";
+"guide_uninstall_step3_title" = "Remove Profile";
+"guide_uninstall_step3_desc" = "Tap 'Remove Profile' and confirm. This will uninstall the fonts.";
+
 "button_close" = "Close Guide";
 "button_done" = "Done";
 "button_continue" = "I Understand, Select Fonts";

@@ -66,7 +66,7 @@ struct ContentView: View {
                 }
             }
             .sheet(isPresented: $showInstallGuide) {
-                ProfileInstallGuideView()
+                ProfileGuideView()
             }
             .fileImporter(
                 isPresented: $showFileImporter,

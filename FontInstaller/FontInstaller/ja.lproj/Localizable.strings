@@ -11,14 +11,26 @@
 "status_success_count" = "%lld個のフォント用プロファイルが生成されました！";
 "status_failed" = "インストールに失敗しました。";
 
-"guide_title" = "フォントのインストール方法";
-"guide_nav_title" = "インストールガイド";
+"guide_nav_title" = "フォントガイド";
+"guide_mode_install" = "インストール";
+"guide_mode_uninstall" = "アンインストール";
+"guide_install_title" = "フォントのインストール方法";
+"guide_uninstall_title" = "フォントの削除方法";
+
 "guide_step1_title" = "プロファイルを保存";
 "guide_step1_desc" = "生成された構成プロファイルを「ファイル」に保存するか、共有してください。";
 "guide_step2_title" = "設定を開く";
 "guide_step2_desc" = "設定アプリを開きます。上部に「プロファイルがダウンロードされました」と表示されるか、一般 > VPNとデバイス管理に移動します。";
 "guide_step3_title" = "プロファイルをインストール";
 "guide_step3_desc" = "プロファイルをタップし、指示に従ってインストールしてください。フォントがシステム全体で使用可能になります。";
+
+"guide_uninstall_step1_title" = "設定を開く";
+"guide_uninstall_step1_desc" = "設定 > 一般 > VPNとデバイス管理に移動します。";
+"guide_uninstall_step2_title" = "プロファイルを選択";
+"guide_uninstall_step2_desc" = "構成プロファイルの下にある「Custom Fonts Installation」を見つけます。";
+"guide_uninstall_step3_title" = "プロファイルを削除";
+"guide_uninstall_step3_desc" = "「プロファイルを削除」をタップして確認します。これでフォントがアンインストールされます。";
+
 "button_close" = "ガイドを閉じる";
 "button_done" = "完了";
 "button_continue" = "理解しました。フォントを選択する";
