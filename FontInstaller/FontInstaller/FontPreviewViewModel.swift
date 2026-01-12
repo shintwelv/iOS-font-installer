@@ -33,35 +33,29 @@ class FontPreviewViewModel: ObservableObject {
             }
 
             do {
-                // 1. Read font data from URL
+                    // 1. 파일을 Data 객체로 직접 읽어옵니다. (권한이 있을 때 메모리로 복사)
                 let fontData = try Data(contentsOf: url)
-                
-                // 2. Create font descriptors from data as requested
-                guard let descriptors = CTFontManagerCreateFontDescriptorsFromData(fontData as CFData) as? [CTFontDescriptor],
-                      let firstDescriptor = descriptors.first else {
-                    errorMessage = "Could not read font data."
+
+                    // 2. Data로부터 CGDataProvider 생성
+                guard let provider = CGDataProvider(data: fontData as CFData),
+                      let cgFont = CGFont(provider) else {
+                    errorMessage = "Could not create Font"
                     return
                 }
 
-                // 3. Extract metadata
-                self.fontDisplayName = CTFontDescriptorCopyAttribute(firstDescriptor, kCTFontDisplayNameAttribute) as? String ?? url.lastPathComponent
-                self.fontFamilyName = CTFontDescriptorCopyAttribute(firstDescriptor, kCTFontFamilyNameAttribute) as? String ?? ""
-                self.fontPostScriptName = CTFontDescriptorCopyAttribute(firstDescriptor, kCTFontNameAttribute) as? String ?? ""
+                    // 3. PostScript 이름 추출 (메타데이터)
+                if let postScriptName = cgFont.postScriptName as String? {
+                    self.fontPostScriptName = postScriptName
+                    self.fontFamilyName = cgFont.fullName as String? ?? ""
+                    self.fontDisplayName = url.lastPathComponent
 
-                // 4. Register font for preview (Process-scope) using the URL
-                var error: Unmanaged<CFError>?
-                if CTFontManagerRegisterFontsForURL(url as CFURL, .process, &error) {
-                    self.registeredFontUrl = url
-                    if !fontPostScriptName.isEmpty {
-                        self.previewFont = Font.custom(fontPostScriptName, size: 24)
-                    }
-                } else {
-                    // If registration failed (e.g. already registered), try to use the font anyway
-                    if !fontPostScriptName.isEmpty {
-                        self.previewFont = Font.custom(fontPostScriptName, size: 24)
+                    // 4. 메모리에 있는 CGFont를 등록
+                    var error: Unmanaged<CFError>?
+                    if CTFontManagerRegisterGraphicsFont(cgFont, &error) {
+                        self.previewFont = Font.custom(postScriptName, size: 24)
                     } else {
-                        let errorDesc = error?.takeRetainedValue().localizedDescription ?? "Unknown error"
-                        errorMessage = "Failed to register font: \(errorDesc)"
+                            // 이미 등록된 경우 등을 처리
+                        self.previewFont = Font.custom(postScriptName, size: 24)
                     }
                 }
             } catch {
