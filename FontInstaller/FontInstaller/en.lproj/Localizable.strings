@@ -35,3 +35,8 @@
 "button_close" = "Close Guide";
 "button_done" = "Done";
 "button_continue" = "I Understand, Select Fonts";
+
+"preview_sample_en" = "The quick brown fox jumps over the lazy dog.";
+"preview_sample_ko" = "다람쥐 헌 쳇바퀴에 타고파.";
+"preview_sample_ja" = "いろはにほへと ちりぬるを わかよたれそ つねならむ";
+"preview_sample_zh" = "北国风光，千里冰封，万里雪飘。";

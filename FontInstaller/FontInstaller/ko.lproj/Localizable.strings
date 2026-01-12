@@ -35,3 +35,8 @@
 "button_close" = "가이드 닫기";
 "button_done" = "완료";
 "button_continue" = "확인했습니다, 폰트 선택하기";
+
+"preview_sample_en" = "The quick brown fox jumps over the lazy dog.";
+"preview_sample_ko" = "다람쥐 헌 쳇바퀴에 타고파.";
+"preview_sample_ja" = "いろはにほへと ちりぬるを わかよたれそ つねならむ";
+"preview_sample_zh" = "北国风光，千里冰封，万里雪飘。";

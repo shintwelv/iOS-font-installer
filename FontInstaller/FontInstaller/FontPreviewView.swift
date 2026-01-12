@@ -48,26 +48,32 @@ struct FontPreviewView: View {
                             
                             if let previewFont = viewModel.previewFont {
                                 VStack(spacing: 20) {
-                                    Text("ABCDEFGHIJKLM\nNOPQRSTUVWXYZ")
-                                        .font(previewFont)
-                                        .multilineTextAlignment(.center)
-                                        .frame(maxWidth: .infinity)
+                                    // Language Samples
+                                    VStack(alignment: .leading, spacing: 12) {
+                                        SampleSection(title: "English", text: NSLocalizedString("preview_sample_en", comment: ""), font: previewFont)
+                                        SampleSection(title: "한국어", text: NSLocalizedString("preview_sample_ko", comment: ""), font: previewFont)
+                                        SampleSection(title: "日本語", text: NSLocalizedString("preview_sample_ja", comment: ""), font: previewFont)
+                                        SampleSection(title: "简体中文", text: NSLocalizedString("preview_sample_zh", comment: ""), font: previewFont)
+                                    }
                                     
-                                    Text("abcdefghijklm\nnopqrstuvwxyz")
-                                        .font(previewFont)
-                                        .multilineTextAlignment(.center)
-                                        .frame(maxWidth: .infinity)
+                                    Divider()
                                     
-                                    Text("1234567890\n!@#$%^&*()_+")
-                                        .font(previewFont)
-                                        .multilineTextAlignment(.center)
-                                        .frame(maxWidth: .infinity)
-                                    
-                                    Text("The quick brown fox jumps over the lazy dog.")
-                                        .font(previewFont)
-                                        .multilineTextAlignment(.center)
-                                        .padding()
-                                        .frame(maxWidth: .infinity)
+                                    VStack(spacing: 12) {
+                                        Text("ABCDEFGHIJKLM\nNOPQRSTUVWXYZ")
+                                            .font(previewFont)
+                                            .multilineTextAlignment(.center)
+                                            .frame(maxWidth: .infinity)
+                                        
+                                        Text("abcdefghijklm\nnopqrstuvwxyz")
+                                            .font(previewFont)
+                                            .multilineTextAlignment(.center)
+                                            .frame(maxWidth: .infinity)
+                                        
+                                        Text("1234567890\n!@#$%^&*()_+")
+                                            .font(previewFont)
+                                            .multilineTextAlignment(.center)
+                                            .frame(maxWidth: .infinity)
+                                    }
                                 }
                                 .padding()
                                 .background(Color.white)
@@ -111,6 +117,22 @@ struct DetailRow: View {
                 .frame(width: 80, alignment: .leading)
             Text(value)
                 .font(.subheadline)
+        }
+    }
+}
+
+struct SampleSection: View {
+    let title: String
+    let text: String
+    let font: Font
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 4) {
+            Text(title)
+                .font(.caption)
+                .foregroundColor(.secondary)
+            Text(text)
+                .font(font)
         }
     }
 }

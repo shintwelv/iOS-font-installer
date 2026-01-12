@@ -4,7 +4,7 @@
 "button_preview_font" = "フォントのプレビュー";
 "status_ready" = "フォントをインストールする準備ができました";
 "status_installing" = "インストール中...";
-"status_no_files" = "ファイルが選択されていません。";
+"status_no_files" = "ファイル가選択されていません。";
 "status_error_selecting" = "ファイルの選択中にエラーが発生しました。";
 "status_preparing_count" = "%lld個のフォントのインストールを準備中...";
 "status_access_error" = "選択したファイルにアクセスできませんでした。";
@@ -35,3 +35,8 @@
 "button_close" = "ガイドを閉じる";
 "button_done" = "完了";
 "button_continue" = "理解しました。フォントを選択する";
+
+"preview_sample_en" = "The quick brown fox jumps over the lazy dog.";
+"preview_sample_ko" = "다람쥐 헌 쳇바퀴에 타고파.";
+"preview_sample_ja" = "いろはにほへと ちりぬるを わかよたれそ つねならむ";
+"preview_sample_zh" = "北国风光，千里冰封，万里雪飘。";
