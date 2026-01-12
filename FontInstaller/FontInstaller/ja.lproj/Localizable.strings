@@ -8,5 +8,17 @@
 "status_preparing_count" = "%lld個のフォントのインストールを準備中...";
 "status_access_error" = "選択したファイルにアクセスできませんでした。";
 "status_permission_error" = "権限エラー。";
-"status_success_count" = "%lld個のフォントが正常にインストールされました！";
+"status_success_count" = "%lld個のフォント用プロファイルが生成されました！";
 "status_failed" = "インストールに失敗しました。";
+
+"guide_title" = "フォントのインストール方法";
+"guide_nav_title" = "インストールガイド";
+"guide_step1_title" = "プロファイルを保存";
+"guide_step1_desc" = "生成された構成プロファイルを「ファイル」に保存するか、共有してください。";
+"guide_step2_title" = "設定を開く";
+"guide_step2_desc" = "設定アプリを開きます。上部に「プロファイルがダウンロードされました」と表示されるか、一般 > VPNとデバイス管理に移動します。";
+"guide_step3_title" = "プロファイルをインストール";
+"guide_step3_desc" = "プロファイルをタップし、指示に従ってインストールしてください。フォントがシステム全体で使用可能になります。";
+"button_close" = "ガイドを閉じる";
+"button_done" = "完了";
+"button_continue" = "理解しました。フォントを選択する";

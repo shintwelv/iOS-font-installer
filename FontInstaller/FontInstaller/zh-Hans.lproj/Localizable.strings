@@ -8,5 +8,17 @@
 "status_preparing_count" = "正在准备安装 %lld 个字体...";
 "status_access_error" = "无法访问所选文件。";
 "status_permission_error" = "权限错误。";
-"status_success_count" = "成功安装 %lld 个字体！";
+"status_success_count" = "已生成 %lld 个字体的配置文件！";
 "status_failed" = "安装失败。";
+
+"guide_title" = "如何安装字体";
+"guide_nav_title" = "安装指南";
+"guide_step1_title" = "保存配置文件";
+"guide_step1_desc" = "将生成的配置文件保存到“文件”或进行共享。";
+"guide_step2_title" = "打开设置";
+"guide_step2_desc" = "打开设置应用。您应该在顶部看到“已下载配置文件”，或者前往“通用”>“VPN与设备管理”。";
+"guide_step3_title" = "安装配置文件";
+"guide_step3_desc" = "点击配置文件并按照提示进行安装。字体将在全系统中可用。";
+"button_close" = "关闭指南";
+"button_done" = "完成";
+"button_continue" = "我已了解，选择字体";

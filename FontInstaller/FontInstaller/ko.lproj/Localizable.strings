@@ -8,5 +8,17 @@
 "status_preparing_count" = "%lld개의 폰트 설치 준비 중...";
 "status_access_error" = "선택한 파일에 접근할 수 없습니다.";
 "status_permission_error" = "권한 오류.";
-"status_success_count" = "%lld개의 폰트가 성공적으로 설치되었습니다!";
+"status_success_count" = "%lld개의 폰트에 대한 프로파일이 생성되었습니다!";
 "status_failed" = "설치 실패.";
+
+"guide_title" = "폰트 설치 방법";
+"guide_nav_title" = "설치 가이드";
+"guide_step1_title" = "프로파일 저장";
+"guide_step1_desc" = "생성된 구성 프로파일을 '파일'에 저장하거나 공유하세요.";
+"guide_step2_title" = "설정 열기";
+"guide_step2_desc" = "설정 앱을 여세요. 상단에 '프로파일이 다운로드됨'이 보이거나, 일반 > VPN 및 기기 관리로 이동하세요.";
+"guide_step3_title" = "프로파일 설치";
+"guide_step3_desc" = "프로파일을 탭하고 안내에 따라 설치하세요. 폰트가 시스템 전체에 적용됩니다.";
+"button_close" = "가이드 닫기";
+"button_done" = "완료";
+"button_continue" = "확인했습니다, 폰트 선택하기";

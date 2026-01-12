@@ -14,62 +14,82 @@ struct ContentView: View {
     @State private var isProcessing = false
     @State private var errorMessage: String? = nil
     @State private var generatedProfileURL: URL? = nil
+    @State private var showInstallGuide = false
 
     var body: some View {
-        VStack(spacing: 24) {
-            Image(systemName: "textformat.size")
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: 80, height: 80)
-                .foregroundStyle(.tint)
-            
-            Text("app_title")
-                .font(.largeTitle)
-                .fontWeight(.bold)
-            
-            Text("app_description")
-                .multilineTextAlignment(.center)
-                .foregroundStyle(.secondary)
-                .padding(.horizontal)
-            
-            if isProcessing {
-                ProgressView("status_installing")
-            } else {
-                Text(statusMessage)
-                    .font(.headline)
-                    .foregroundStyle(errorMessage == nil ? Color.primary : Color.red)
+        NavigationView {
+            VStack(spacing: 24) {
+                Image(systemName: "textformat.size")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 80, height: 80)
+                    .foregroundStyle(.tint)
+                
+                Text("app_title")
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+                
+                Text("app_description")
                     .multilineTextAlignment(.center)
-                    .padding()
-            }
-            
-            Button(action: {
-                errorMessage = nil
-                showFileImporter = true
-            }) {
-                HStack {
-                    Image(systemName: "square.and.arrow.down")
-                    Text("button_select_files")
+                    .foregroundStyle(.secondary)
+                    .padding(.horizontal)
+                
+                if isProcessing {
+                    ProgressView("status_installing")
+                } else {
+                    Text(statusMessage)
+                        .font(.headline)
+                        .foregroundStyle(errorMessage == nil ? Color.primary : Color.red)
+                        .multilineTextAlignment(.center)
+                        .padding()
                 }
-                .font(.headline)
-                .padding()
-                .frame(maxWidth: .infinity)
-                .background(Color.blue)
-                .foregroundColor(.white)
-                .cornerRadius(12)
+                
+                Button(action: {
+                    errorMessage = nil
+                    showInstallGuide = true
+                }) {
+                    HStack {
+                        Image(systemName: "square.and.arrow.down")
+                        Text("button_select_files")
+                    }
+                    .font(.headline)
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    .background(Color.blue)
+                    .foregroundColor(.white)
+                    .cornerRadius(12)
+                }
+                .disabled(isProcessing)
+                .padding(.horizontal, 40)
             }
-            .disabled(isProcessing)
-            .padding(.horizontal, 40)
-        }
-        .padding()
-        .fileImporter(
-            isPresented: $showFileImporter,
-            allowedContentTypes: [.font],
-            allowsMultipleSelection: true
-        ) { result in
-            handleFileImport(result)
-        }
-        .sheet(item: $generatedProfileURL) { url in
-            ActivityViewController(activityItems: [url])
+            .padding()
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: {
+                        showInstallGuide = true
+                    }) {
+                        Image(systemName: "questionmark.circle")
+                    }
+                }
+            }
+            .sheet(isPresented: $showInstallGuide) {
+                ProfileInstallGuideView(onContinue: {
+                    // Trigger file picker after a slight delay to ensure the sheet is dismissed
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        showFileImporter = true
+                    }
+                })
+            }
+            .fileImporter(
+                isPresented: $showFileImporter,
+                allowedContentTypes: [.font],
+                allowsMultipleSelection: true
+            ) { result in
+                handleFileImport(result)
+            }
+            .sheet(item: $generatedProfileURL) { url in
+                ActivityViewController(activityItems: [url])
+            }
         }
     }
     
