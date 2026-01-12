@@ -13,12 +13,23 @@
 		2DC676732F149BFD00DB026C /* ko.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 2DC6766F2F149BFD00DB026C /* ko.lproj */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		2DC6767C2F149D7500DB026C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2DC6764D2F1497BC00DB026C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2DC676542F1497BC00DB026C;
+			remoteInfo = FontInstaller;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		2DC676552F1497BC00DB026C /* FontInstaller.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FontInstaller.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DC6766C2F149BFC00DB026C /* en.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = en.lproj; path = FontInstaller/en.lproj; sourceTree = "<group>"; };
 		2DC6766D2F149BFC00DB026C /* ja.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ja.lproj; path = FontInstaller/ja.lproj; sourceTree = "<group>"; };
 		2DC6766E2F149BFD00DB026C /* zh-Hans.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "zh-Hans.lproj"; path = "FontInstaller/zh-Hans.lproj"; sourceTree = "<group>"; };
 		2DC6766F2F149BFD00DB026C /* ko.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ko.lproj; path = FontInstaller/ko.lproj; sourceTree = "<group>"; };
+		2DC676782F149D7500DB026C /* FontInstallerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FontInstallerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -27,10 +38,22 @@
 			path = FontInstaller;
 			sourceTree = "<group>";
 		};
+		2DC676792F149D7500DB026C /* FontInstallerTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = FontInstallerTests;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		2DC676522F1497BC00DB026C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2DC676752F149D7500DB026C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -48,6 +71,7 @@
 				2DC6766F2F149BFD00DB026C /* ko.lproj */,
 				2DC6766E2F149BFD00DB026C /* zh-Hans.lproj */,
 				2DC676572F1497BC00DB026C /* FontInstaller */,
+				2DC676792F149D7500DB026C /* FontInstallerTests */,
 				2DC676562F1497BC00DB026C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -56,6 +80,7 @@
 			isa = PBXGroup;
 			children = (
 				2DC676552F1497BC00DB026C /* FontInstaller.app */,
+				2DC676782F149D7500DB026C /* FontInstallerTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -85,6 +110,29 @@
 			productReference = 2DC676552F1497BC00DB026C /* FontInstaller.app */;
 			productType = "com.apple.product-type.application";
 		};
+		2DC676772F149D7500DB026C /* FontInstallerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2DC6767E2F149D7500DB026C /* Build configuration list for PBXNativeTarget "FontInstallerTests" */;
+			buildPhases = (
+				2DC676742F149D7500DB026C /* Sources */,
+				2DC676752F149D7500DB026C /* Frameworks */,
+				2DC676762F149D7500DB026C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2DC6767D2F149D7500DB026C /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				2DC676792F149D7500DB026C /* FontInstallerTests */,
+			);
+			name = FontInstallerTests;
+			packageProductDependencies = (
+			);
+			productName = FontInstallerTests;
+			productReference = 2DC676782F149D7500DB026C /* FontInstallerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -97,6 +145,10 @@
 				TargetAttributes = {
 					2DC676542F1497BC00DB026C = {
 						CreatedOnToolsVersion = 26.2;
+					};
+					2DC676772F149D7500DB026C = {
+						CreatedOnToolsVersion = 26.2;
+						TestTargetID = 2DC676542F1497BC00DB026C;
 					};
 				};
 			};
@@ -118,6 +170,7 @@
 			projectRoot = "";
 			targets = (
 				2DC676542F1497BC00DB026C /* FontInstaller */,
+				2DC676772F149D7500DB026C /* FontInstallerTests */,
 			);
 		};
 /* End PBXProject section */
@@ -134,6 +187,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2DC676762F149D7500DB026C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -144,7 +204,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2DC676742F149D7500DB026C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2DC6767D2F149D7500DB026C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2DC676542F1497BC00DB026C /* FontInstaller */;
+			targetProxy = 2DC6767C2F149D7500DB026C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		2DC6765E2F1497BF00DB026C /* Debug */ = {
@@ -295,8 +370,9 @@
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_STRICT_MEMORY_SAFETY = YES;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -328,9 +404,54 @@
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_STRICT_MEMORY_SAFETY = YES;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		2DC6767F2F149D7500DB026C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 77P94MC849;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.elvin.FontInstallerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_STRICT_MEMORY_SAFETY = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FontInstaller.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/FontInstaller";
+			};
+			name = Debug;
+		};
+		2DC676802F149D7500DB026C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 77P94MC849;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.elvin.FontInstallerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_STRICT_MEMORY_SAFETY = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FontInstaller.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/FontInstaller";
 			};
 			name = Release;
 		};
@@ -351,6 +472,15 @@
 			buildConfigurations = (
 				2DC676612F1497BF00DB026C /* Debug */,
 				2DC676622F1497BF00DB026C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2DC6767E2F149D7500DB026C /* Build configuration list for PBXNativeTarget "FontInstallerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2DC6767F2F149D7500DB026C /* Debug */,
+				2DC676802F149D7500DB026C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
