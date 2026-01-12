@@ -1,9 +1,9 @@
-//
-//  FontPreviewViewModel.swift
-//  FontInstaller
-//
-//  Created by ShinIl Heo on 1/12/26.
-//
+    //
+    //  FontPreviewViewModel.swift
+    //  FontInstaller
+    //
+    //  Created by ShinIl Heo on 1/12/26.
+    //
 
 import Foundation
 import SwiftUI
@@ -18,71 +18,61 @@ class FontPreviewViewModel: ObservableObject {
     @Published var previewFont: Font?
     @Published var errorMessage: String?
     @Published var isLoading = false
-    
+
     private var registeredFontUrl: URL?
-    
+
     func loadFont(from url: URL) {
         isLoading = true
         errorMessage = nil
-        
+
         Task {
-            // Access security scoped resource if needed
             let accessing = url.startAccessingSecurityScopedResource()
             defer {
-                if accessing {
-                    url.stopAccessingSecurityScopedResource()
-                }
+                if accessing { url.stopAccessingSecurityScopedResource() }
                 isLoading = false
             }
-            
-            // 1. Create Font Descriptor to extract metadata
-            guard let descriptors = CTFontManagerCreateFontDescriptorsFromURL(url as CFURL) as? [CTFontDescriptor],
-                  let firstDescriptor = descriptors.first else {
-                errorMessage = "Could not read font file."
-                return
-            }
-            
-            self.fontDisplayName = CTFontDescriptorCopyAttribute(firstDescriptor, kCTFontDisplayNameAttribute) as? String ?? url.lastPathComponent
-            self.fontFamilyName = CTFontDescriptorCopyAttribute(firstDescriptor, kCTFontFamilyNameAttribute) as? String ?? "Unknown Family"
-            self.fontPostScriptName = CTFontDescriptorCopyAttribute(firstDescriptor, kCTFontNameAttribute) as? String ?? ""
-            
-            // 2. Register font for preview (Process-scope)
-            // We use CTFontManagerRegisterFontsForURL with .process scope so it's available to this app immediately for rendering.
-            var error: Unmanaged<CFError>?
-            if CTFontManagerRegisterFontsForURL(url as CFURL, .process, &error) {
-                registeredFontUrl = url
-                
-                // 3. Create SwiftUI Font
-                // We use the PostScript name (or unique name) to initialize the font
-                if let postScriptName = self.fontPostScriptName as String?, !postScriptName.isEmpty {
-                    self.previewFont = Font.custom(postScriptName, size: 24)
-                } else {
-                    // Fallback if we can't get the name, though registration success usually implies we can.
-                    errorMessage = "Font loaded but name not found."
+
+            do {
+                    // 1. 파일을 Data 객체로 직접 읽어옵니다. (권한이 있을 때 메모리로 복사)
+                let fontData = try Data(contentsOf: url)
+
+                    // 2. Data로부터 CGDataProvider 생성
+                guard let provider = CGDataProvider(data: fontData as CFData),
+                      let cgFont = CGFont(provider) else {
+                    errorMessage = "Could not create Font"
+                    return
                 }
-            } else {
-                // If it failed, maybe it's already registered?
-                // CTFontManagerRegisterFontsForURL returns false if already registered.
-                // We can try to just use it.
-                if let postScriptName = self.fontPostScriptName as String?, !postScriptName.isEmpty {
-                     self.previewFont = Font.custom(postScriptName, size: 24)
-                } else {
-                     let errorDesc = error?.takeRetainedValue().localizedDescription ?? "Unknown error"
-                     errorMessage = "Failed to register font for preview: \(errorDesc)"
+
+                    // 3. PostScript 이름 추출 (메타데이터)
+                if let postScriptName = cgFont.postScriptName as String? {
+                    self.fontPostScriptName = postScriptName
+                    self.fontFamilyName = cgFont.fullName as String? ?? ""
+                    self.fontDisplayName = url.lastPathComponent
+
+                    // 4. 메모리에 있는 CGFont를 등록
+                    var error: Unmanaged<CFError>?
+                    if CTFontManagerRegisterGraphicsFont(cgFont, &error) {
+                        self.previewFont = Font.custom(postScriptName, size: 24)
+                    } else {
+                            // 이미 등록된 경우 등을 처리
+                        self.previewFont = Font.custom(postScriptName, size: 24)
+                    }
                 }
+            } catch {
+                self.errorMessage = "Could not read Font file: \(error.localizedDescription)"
             }
         }
     }
-    
+
     deinit {
-        // Unregister the font when the view model is deallocated to clean up
-        // Note: This deinit might run on any thread, but unregistration should be safe or we should dispatch main.
-        // However, making deinit async/main actor is tricky.
-        // Process scope fonts stick around until the app terminates usually, so explicit unregistration isn't strictly fatal if missed,
-        // but good practice.
+            // Unregister the font when the view model is deallocated to clean up
+            // Note: This deinit might run on any thread, but unregistration should be safe or we should dispatch main.
+            // However, making deinit async/main actor is tricky.
+            // Process scope fonts stick around until the app terminates usually, so explicit unregistration isn't strictly fatal if missed,
+            // but good practice.
         if let url = registeredFontUrl {
-             var error: Unmanaged<CFError>?
-             CTFontManagerUnregisterFontsForURL(url as CFURL, .process, &error)
+            var error: Unmanaged<CFError>?
+            CTFontManagerUnregisterFontsForURL(url as CFURL, .process, &error)
         }
     }
 }
